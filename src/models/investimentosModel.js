@@ -30,10 +30,17 @@ const precoAtivo = async (codAtivo) => {
   return precoUnitAtivo;
 }
 
+const getQtdeAtivoCarteira = async (codCliente, codAtivo) => {
+  const query = 'SELECT qtdeAtivo FROM desafio_xp.carteira WHERE codCliente = ? AND codAtivo = ?;';
+  const [result] = await connection.execute(query,[codCliente, codAtivo]);
+  return result;
+}
+
 module.exports = {
   getAll,
   addAtivoExistente,
   addAtivoNovo,
   removeAtivoExistente,
   precoAtivo,
+  getQtdeAtivoCarteira,
 }

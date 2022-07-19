@@ -18,8 +18,15 @@ const getByCodAtivo = async (codAtivo) => {
   return result;
 };
 
+const getQtdeAtivo = async (codAtivo) => {
+  const query = 'SELECT qtdeAtivo FROM desafio_xp.ativos WHERE codAtivo = ?;';
+  const [result] = await connection.execute(query, [codAtivo]);
+  return result;
+}
+
 module.exports = {
   getAll,
   getByCodCLiente,
   getByCodAtivo,
+  getQtdeAtivo,
 }
