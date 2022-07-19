@@ -12,7 +12,14 @@ const saque = async (codCliente, valor) => {
   return result;
 }
 
+const saldo = async (codCliente) => {
+  const query = 'SELECT saldo FROM desafio_xp.clientes WHERE codCliente = ?;';
+  const [result] = await connection.execute(query, [codCliente]);
+  return result;
+}
+
 module.exports = {
   deposito,
   saque,
+  saldo,
 }
