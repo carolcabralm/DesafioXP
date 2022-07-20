@@ -1,13 +1,16 @@
 const investimentosModel = require('../models/investimentosModel');
 const contaModel = require('../models/contaModel');
+// const ativosModel = require('../models/ativosModel');
 
 const ativosComprar = async (codCliente, codAtivo, qtdeAtivo) => {
   const getArray = await investimentosModel.getAll();
-  const findCliente = getArray.filter((cliente) => cliente.codCliente === codCliente)   
+  const findCliente = getArray.filter((cliente) => cliente.codCliente === codCliente);
+  
   
   if (findCliente.length === 0) {
     return { code: 404, response: { message: 'Cliente não encontrado' } };
-  } 
+  };
+  
   if (findCliente.some((ativo) => ativo.codAtivo === codAtivo)  ) {
     await investimentosModel.addAtivoExistente(codCliente, codAtivo, qtdeAtivo);
     const valor = await valorTotalAtivo(codAtivo, qtdeAtivo);

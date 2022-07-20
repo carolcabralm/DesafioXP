@@ -21,7 +21,14 @@ const saque = async (req, res, next) => {
   return res.status(code).json(response);
 }
 
+const saldo = async (req, res, next) => {
+  const { codCliente } = req.params;
+  const { code, response } = await contaService.saldo(codCliente);
+  return res.status(code).json({codCliente, ...response});
+}
+
 module.exports = {
   deposito,
   saque,
+  saldo,
 }

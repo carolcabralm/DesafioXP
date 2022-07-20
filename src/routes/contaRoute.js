@@ -10,4 +10,6 @@ router.post('/conta/deposito', auth, validacaoDeposito, contaController.deposito
 
 router.post('/conta/saque', auth, validacaoSaque, contaController.saque);
 
+router.get('/conta/:codCliente', contaController.saldo);
+
 module.exports = router;
