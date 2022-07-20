@@ -2,9 +2,9 @@ const ativosModel = require('../models/ativosModel');
 
 const getByCodCliente = async (codCliente) => {
   const result = await ativosModel.getByCodCLiente(codCliente);
-  if (result.length === 0) {
+  /* if (result.length === 0) {
     return { code: 404, response: { message: 'Cliente não encontrado' } }
-  } return { code: 201, response: result }
+  } */ return { code: 201, response: result }
 }
 
 const getByCodAtivo = async (codAtivo) => {

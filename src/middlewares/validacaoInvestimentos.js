@@ -7,7 +7,6 @@ const validacaoInvestimentosComprar = async (req, res, next) => {
   const codClienteToken = req.user.codCliente;
   const getArrayAtivos = await ativosModel.getAll();
   const findAtivo = getArrayAtivos.filter((ativo) => ativo.codAtivo === codAtivo);
-  console.log('FINDATIVO', findAtivo.length)
 
   if(codClienteToken !== codCliente) {
     return res.status(401).json({ message: 'Não autorizado' });
@@ -26,7 +25,6 @@ const validacaoInvestimentosVender = async (req, res, next) => {
   const { codCliente, codAtivo, qtdeAtivo } = req.body;
   const [quantidadeAtivo] = await investimentosModel.getQtdeAtivoCarteira(codCliente, codAtivo);
   const codClienteToken = req.user.codCliente;
-  console.log('TOKEN CLIENTE', codClienteToken, codCliente)
   if(codClienteToken !== codCliente) {
     return res.status(401).json({ message: 'Não autorizado' });
   } 

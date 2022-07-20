@@ -7,9 +7,7 @@ const login = async (codCliente, nomeCliente) => {
   if (!findUser) return { code: 404, response: { message: 'Cliente não encontrado' } };
 
   const payload = { codCliente, nomeCliente };
-  // console.log('HEIN', token(payload))
   const genToken = token(payload);
-  // console.log('GENTOKEN', genToken)
   return { code: 200, response: { token: genToken } };
 }
 

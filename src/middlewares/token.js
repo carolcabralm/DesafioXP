@@ -8,7 +8,6 @@ const jwtConfig = {
 }
 
 const token = (payload) => jwt.sign(payload, JWT_SECRET, jwtConfig);
-// console.log('TOKEN', typeof(token));
 
 const auth = (req, res, next) => {
   const token = req.headers.authorization;

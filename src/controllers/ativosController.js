@@ -5,9 +5,8 @@ const getByCodAtivoOuCliente = async (req, res, next) => {
   const isCodAtivo = await ativosService.isCodAtivoOuCliente(codigo);
   if (!isCodAtivo) {
     const codClienteToken = req.user.codCliente;
-    console.log('AQYIII', typeof(codClienteToken), typeof(codigo))
-    if(codClienteToken !== +codigo) {
-      return res.status(401).json({ message: 'Não autorizado' });}
+    if(codClienteToken !== +codigo) return res.status(401).json({ message: 'Não autorizado' });
+    
     const { code, response } = await ativosService.getByCodCliente(codigo);
     return res.status(code).json(response);
   }

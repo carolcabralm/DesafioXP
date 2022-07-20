@@ -12,7 +12,6 @@ const saque = async (codCliente, valor) => {
 
 const saldo = async (codCliente) => {
   const [result] = await contaModel.saldo(codCliente);
-  console.log('ERROSERVICE', result)
   return { code: 201, response: result }
 }
 

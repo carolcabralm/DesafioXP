@@ -15,7 +15,6 @@ const validacaoDeposito = async (req, res, next) => {
 const validacaoSaque = async (req, res, next) => {
   const { codCliente, valor } = req.body;
   const [saldo] = await contaModel.saldo(codCliente);
-  console.log('SALDO', codCliente)
   const codClienteToken = req.user.codCliente;
   if(codClienteToken !== codCliente) {
     return res.status(401).json({ message: 'Não autorizado' });
