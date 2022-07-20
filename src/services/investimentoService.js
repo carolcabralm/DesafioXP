@@ -13,6 +13,10 @@ const ativosComprar = async (codCliente, codAtivo, qtdeAtivo) => {
     const valor = await valorTotalAtivo(codAtivo, qtdeAtivo);
     await contaModel.saque(codCliente, valor);
     const [saldo] = await contaModel.saldo(codCliente);
+    // console.log('valor saldo', valor, saldo)
+    if (valor > saldo.saldo) {
+      return { code: 200, response: { message: 'Saldo insuficiente' } };
+    } 
     return { code: 201, response: { message: `Ativo adicionado com sucesso. Seu saldo atual é de ${saldo.saldo}` }
     };
   }
@@ -20,6 +24,9 @@ const ativosComprar = async (codCliente, codAtivo, qtdeAtivo) => {
     const valor = await valorTotalAtivo(codAtivo, qtdeAtivo);
     await contaModel.saque(codCliente, valor);
     const [saldo] = await contaModel.saldo(codCliente);
+    if (valor < saldo.saldo) {
+      return { code: 200, response: { message: 'Saldo insuficiente' } };
+    } 
     return { code: 201, response: { message: `Ativo inserido com sucesso. Seu saldo atual é de ${saldo.saldo}` }
     };
 }
