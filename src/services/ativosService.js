@@ -8,7 +8,7 @@ const getByCodCliente = async (codCliente) => {
 }
 
 const getByCodAtivo = async (codAtivo) => {
-  const result = await ativosModel.getByCodAtivo(codAtivo);
+  const [result] = await ativosModel.getByCodAtivo(codAtivo);
   if (result.length === 0) {
     return { code: 404, response: { message: 'Ativo não encontrado' } }
   } return { code: 201, response: result }
