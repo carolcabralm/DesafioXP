@@ -44,7 +44,7 @@ Execute os comandos na ordem em que seguem abaixo:
 <details>
 <summary><strong>Possíveis retornos:</strong></summary> 
 - Caso o login seja realizado com sucesso, será retornado:
-- Obs.: O token está sendo retornado apenas para que seja possível copiá-lo para passar como o parâmetro authorization no Header do Postman nos demais endpoints. Desta forma, o usuário logado poderá requisitar somente suas próprias informações.
+- Obs.: O token está sendo retornado apenas para que seja possível copiá-lo para passar como o parâmetro authorization no Header do Postman nos demais endpoints. Desta forma, o usuário logado poderá requisitar somente suas próprias informações;
 ```json
 {
     "message": "Login realizado com sucesso",
