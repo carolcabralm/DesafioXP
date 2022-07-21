@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha ./tests/**/*$NAME*.test.js -- exit",
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "restore": "node ./restoreDB.js"
   },
   "repository": {
     "type": "git",
