@@ -34,7 +34,7 @@ Execute os comandos na ordem em que seguem abaixo:
 
 - Ao acessar este endpoint, o usuário deve ser capaz de realizar seu login e, assim, ter seu acesso autorizado aos demais endpoits.
 - O corpo da requisição deverá ter o seguinte formato:
-```
+```json
 {
     "codCliente": 1,
     "senha": "Caroline"
@@ -43,7 +43,7 @@ Execute os comandos na ordem em que seguem abaixo:
 
 <details>
 <summary><strong>Caso o login seja realizado com sucesso, será retornado:</strong></summary> 
-```
+```json
 {
     "message": "Login realizado com sucesso",
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb2RDbGllbnRlIjoxLCJzZW5oYSI6IkNhcm9saW5lIiwiaWF0IjoxNjU4NDM0NzA5LCJleHAiOjE2NTg0Nzc5MDl9.3F9UCKVD-5tS4KocG7bfoSWv2DwDUem2TKbld-ZA16s"
@@ -56,7 +56,7 @@ Obs.: O token está sendo retornado apenas para que seja possível copiá-lo par
 <details>
 <summary><strong>Caso usuário ou senha estejam incorretos, será retornado:</strong></summary> 
 - 
-```
+```json
 {
     "message": "Cliente não encontrado"
 }
