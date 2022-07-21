@@ -3,7 +3,7 @@ const { expect } = require('chai');
 const contaService = require('../../src/services/contaService');
 const contaController = require('../../src/controllers/contaController');
 
-describe('Através do caminho /products/:id, apenas o produto com o id presente na URL deve ser retornado', () => {
+describe('A rota /conta/:codCliente deve retornar o código e o saldo do cliente com código presente na URL', () => {
   const req = { params: {codCliente: 1} };
   const res = {};
   
@@ -30,8 +30,9 @@ describe('Através do caminho /products/:id, apenas o produto com o id presente 
     expect(response).to.be.an('object');
   });
 
-  it('Apenas o produto com o id presente na URL deve ser retornado', async () => {
+  it('Apenas o saldo com o código do cliente presente na URL deve ser retornado', async () => {
     const response = await contaController.saldo(1);
+    console.log
     expect(response).to.have.a.property('codCliente').and.to.be.equal(1);
   })
 })
