@@ -8,7 +8,7 @@ const login = async (codCliente, senha) => {
 
   const payload = { codCliente, senha };
   const genToken = token(payload);
-  return { code: 200, response: { token: genToken } };
+  return { code: 200, response: { message: 'Login realizado com sucesso', token: genToken } };
 }
 
 module.exports = {

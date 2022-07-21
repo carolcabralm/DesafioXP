@@ -2,16 +2,19 @@
 # [Caroline Cabral Machado](https://www.linkedin.com/in/carolcabralm/)
 
 ## Resumo
-Tendo como base o dia a dia da XP, foi desenvolvida a parte de back-end para um aplicativo de invetimentos em ações. Por meio deste aplicativo, um cliente da XP é capaz de realizar seu login para comprar e vender ações, consultar sua carteira de ativos e realizar depósitos e saques em sua conta.
+Tendo como base o dia a dia da XP, foi desenvolvida a parte de back-end para um aplicativo de invetimentos em ações. Por meio deste aplicativo, um cliente da XP é capaz de realizar seu login para comprar e vender ações, consultar sua carteira de ativos, realizar depósitos e saques em sua conta e consultar seu saldo.
 
 ## Explicação da minha tomada de decisão na abordagem do desafio
+Decidi fazer o projeto em JavaScript, por ser  a linguagem que tenho mais familiaridade e também por ser adequada ao tipo de projeto. Para o token de autenticação foi utilizado o JWT (JSON Web Token). Para o banco de dados foi utilizado o MySQL.
 
 ## Instruções de como compilar e executar o projeto
+Execute os comandos na ordem em que seguem abaixo:
 
-docker-compose up -d
-docker exec -it desafio_xp bash
-npm run restore
-npm start
+1. `docker-compose up -d`  Para inicializar os containers do docker.
+2. `docker exec -it desafio_xp bash`  Para acesso ao terminal interativo do container criado pelo compose.
+3. `npm install`  Para instalar as dependências.
+4. `npm run restore`  Para restaurar o banco de dados.
+5. `npm start`  Para executar o projeto.
 
 ## Endpoints
 
@@ -28,12 +31,38 @@ npm start
 
 ### Endpoint POST (/login)
 
+
 - Ao acessar este endpoint, o usuário deve ser capaz de realizar seu login e, assim, ter seu acesso autorizado aos demais endpoits.
 - O corpo da requisição deverá ter o seguinte formato:
+```
+{
+    "codCliente": 1,
+    "senha": "Caroline"
+}
+```
 
-- Será retornado:
+<details>
+<summary><strong>Caso o login seja realizado com sucesso, será retornado:</strong></summary> 
+```
+{
+    "message": "Login realizado com sucesso",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb2RDbGllbnRlIjoxLCJzZW5oYSI6IkNhcm9saW5lIiwiaWF0IjoxNjU4NDM0NzA5LCJleHAiOjE2NTg0Nzc5MDl9.3F9UCKVD-5tS4KocG7bfoSWv2DwDUem2TKbld-ZA16s"
+}
+```
+Obs.: O token está sendo retornado apenas para que seja possível copiá-lo para passar como o parâmetro authorization no Header do Postman nos demais endpoints. Desta forma, o usuário logado poderá requisitar somente suas próprias informações.
+<br />
+</details>
 
-
+<details>
+<summary><strong>Caso usuário ou senha estejam incorretos, será retornado:</strong></summary> 
+- 
+```
+{
+    "message": "Cliente não encontrado"
+}
+```
+<br />
+</details>
 
 ### Endpoint POST (/investimentos/comprar)
 
@@ -47,6 +76,7 @@ npm start
 - Caso o usuário tente comprar uma quantidade maior do ativo que a existente, o retorno será:
 
 - Caso o usuário não tenha saldo suficiente para a compra da quantidade desejada do ativo, o retorno será:
+
 
 
 
