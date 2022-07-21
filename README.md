@@ -40,26 +40,24 @@ Execute os comandos na ordem em que seguem abaixo:
     "senha": "Caroline"
 }
 ```
-
 <details>
-<summary><strong>Possíveis retornos:</strong></summary> 
-- Caso o login seja realizado com sucesso, será retornado conforme abaixo. Obs. O token está sendo retornado apenas para que seja possível copiá-lo para passar como o parâmetro authorization no Header do Postman nos demais endpoints. Desta forma, o usuário logado poderá requisitar somente suas próprias informações:
-```json
-{
-    "message": "Login realizado com sucesso",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb2RDbGllbnRlIjoxLCJzZW5oYSI6IkNhcm9saW5lIiwiaWF0IjoxNjU4NDM0NzA5LCJleHAiOjE2NTg0Nzc5MDl9.3F9UCKVD-5tS4KocG7bfoSWv2DwDUem2TKbld-ZA16s"
+  <summary><strong>Possíveis retornos:</strong></summary>
+
+  * **Caso o login seja realizado com sucesso, será retornado conforme abaixo. Obs. O token está sendo retornado apenas para que seja possível copiá-lo para passar como o parâmetro authorization no Header do Postman nos demais endpoints. Desta forma, o usuário logado poderá requisitar somente suas próprias informações:**
+    ```json
+   {
+   	 "message": "Login realizado com sucesso",
+    	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb2RDbGllbnRlIjoxLCJzZW5oYSI6IkNhcm9saW5lIiwiaWF0IjoxNjU4NDM0NzA5LCJleHAiOjE2NTg0Nzc5MDl9.3F9UCKVD-5tS4KocG7bfoSWv2DwDUem2TKbld-ZA16s"
 }
-```
-</br>
+    ```
 
-
-- Caso usuário ou senha estejam incorretos, será retornado:
-
-```json
+  * **Caso usuário ou senha estejam incorretos, será retornado:**
+    ```json
 {
-    "message": "Cliente não encontrado"
+   	 "message": "Cliente não encontrado"
 }
-```
+    ```
+
 <br />
 </details>
 
@@ -67,16 +65,45 @@ Execute os comandos na ordem em que seguem abaixo:
 
 - Ao acessar este endpoint, o usuário poderá realizar a compra de um ativo.
 - O corpo da requisição deverá ter o seguinte formato:
+```json
+{
+    "codCliente": 1,
+    "codAtivo": "BBDC4",
+    "qtdeAtivo": 5
+}
+```
+<details>
+  <summary><strong>Possíveis retornos:</strong></summary>
 
-- Caso o usuário da requisição não seja o mesmo usuário logado, o retorno será:
+  * **Caso o usuário da requisição não seja o mesmo usuário logado, o retorno será:**
+    ```json
+   {
+   	 FALTA
+}
+    ```
 
-- Caso o usuário tente comprar um ativo inexistente na base de ativos da XP, o retorno será:
+  * **Caso o usuário tente comprar um ativo inexistente na base de ativos da XP, o retorno será:**
+    ```json
+{
+   	 FALTA
+}
+    ```
+ * **Caso o usuário tente comprar uma quantidade maior do ativo que a existente, o retorno será:**
+    ```json
+   {
+   	 FALTA
+}
+    ```
 
-- Caso o usuário tente comprar uma quantidade maior do ativo que a existente, o retorno será:
+  * **Caso o usuário não tenha saldo suficiente para a compra da quantidade desejada do ativo, o retorno será:**
+    ```json
+{
+   	 FALTA
+}
+    ```
 
-- Caso o usuário não tenha saldo suficiente para a compra da quantidade desejada do ativo, o retorno será:
-
-
+<br />
+</details>
 
 
 ### Endpoint POST (/investimentos/vender)
