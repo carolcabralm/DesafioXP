@@ -77,29 +77,29 @@ Execute os comandos na ordem em que seguem abaixo:
 
   * **Caso o usuário da requisição não seja o mesmo usuário logado, o retorno será:**
     ```json
-   {
-   	 FALTA
-}
+    {
+   	  FALTA
+    }
     ```
 
   * **Caso o usuário tente comprar um ativo inexistente na base de ativos da XP, o retorno será:**
     ```json
-{
+    {
    	 FALTA
-}
+    }
     ```
  * **Caso o usuário tente comprar uma quantidade maior do ativo que a existente, o retorno será:**
     ```json
-   {
+    {
    	 FALTA
-}
+    }
     ```
 
   * **Caso o usuário não tenha saldo suficiente para a compra da quantidade desejada do ativo, o retorno será:**
     ```json
-{
+    {
    	 FALTA
-}
+    }
     ```
 
 <br />
