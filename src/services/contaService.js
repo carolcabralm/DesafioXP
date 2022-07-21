@@ -12,7 +12,7 @@ const saque = async (codCliente, valor) => {
 
 const saldo = async (codCliente) => {
   const [result] = await contaModel.saldo(codCliente);
-  return { code: 201, response: result }
+  return { code: 200, response: result }
 }
 
 module.exports = {
