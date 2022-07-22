@@ -2,7 +2,7 @@
 # [Caroline Cabral Machado](https://www.linkedin.com/in/carolcabralm/)
 
 ## Resumo
-Tendo como base o dia a dia da XP, foi desenvolvida a parte de back-end para um aplicativo de invetimentos em ações. Por meio deste aplicativo, um cliente da XP é capaz de realizar seu login para comprar e vender ações, consultar sua carteira de ativos, realizar depósitos e saques em sua conta e consultar seu saldo.
+Tendo como base o dia a dia da XP, foi desenvolvida a parte de back-end para um aplicativo de investimentos em ações. Por meio deste aplicativo, um cliente da XP é capaz de realizar seu login para comprar e vender ações, consultar sua carteira de ativos, realizar depósitos e saques em sua conta e consultar seu saldo.
 
 ## Explicação da minha tomada de decisão na abordagem do desafio
 Decidi fazer o projeto em JavaScript, por ser  a linguagem que tenho mais familiaridade e também por ser adequada ao tipo de projeto. Para o token de autenticação foi utilizado o JWT (JSON Web Token). Para o banco de dados foi utilizado o MySQL.
@@ -45,10 +45,10 @@ Execute os comandos na ordem em que seguem abaixo:
 
   * **Caso o login seja realizado com sucesso, será retornado conforme abaixo. Obs. O token está sendo retornado apenas para que seja possível copiá-lo para passar como o parâmetro authorization no Header do Postman nos demais endpoints. Desta forma, o usuário logado terá autorização para requisitar somente suas próprias informações:**
     ```json
-   {
-   	 "message": "Login realizado com sucesso.",
+    {
+    	"message": "Login realizado com sucesso.",
     	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb2RDbGllbnRlIjoxLCJzZW5oYSI6IkNhcm9saW5lIiwiaWF0IjoxNjU4NDM0NzA5LCJleHAiOjE2NTg0Nzc5MDl9.3F9UCKVD-5tS4KocG7bfoSWv2DwDUem2TKbld-ZA16s"
-}
+    }
     ```
 
   * **Caso usuário ou senha estejam incorretos, será retornado:**
@@ -56,7 +56,6 @@ Execute os comandos na ordem em que seguem abaixo:
     {
     	"message": "Usuário ou senha incorretos. Favor verificar seu dados."
     }
-
     ```
 
 <br />
@@ -100,27 +99,27 @@ Execute os comandos na ordem em que seguem abaixo:
   * **Caso o usuário tente comprar um ativo inexistente na base de ativos da XP, o retorno será:**
     ```json
     {
-   	 "message": "Ativo não encontrado."
+	"message": "Ativo não encontrado."
     }
     ```
  * **Caso o usuário tente comprar uma quantidade maior do ativo que a existente, o retorno será:**
     ```json
     {
-   	 "message": "Quantidade de ativo disponível menor que a desejada."
+	"message": "Quantidade de ativo disponível menor que a desejada."
     }
     ```
 
   * **Caso o usuário não tenha saldo suficiente para a compra da quantidade desejada do ativo, o retorno será:**
     ```json
     {
-   	 "message": "Saldo insuficiente."
+	"message": "Saldo insuficiente."
     }
     ```
     
   * **Caso a compra do ativo seja realizada com sucesso, o retorno será:**
     ```json
     {
-   	 "message": "Ativo inserido com sucesso. Seu saldo atual é de ${saldo_atual}."
+	"message": "Ativo inserido com sucesso. Seu saldo atual é de ${saldo_atual}."
     }
     ```
 
@@ -305,5 +304,3 @@ Execute os comandos na ordem em que seguem abaixo:
 
 
 ### Endpoint GET (/conta/{codCliente})
-
-
