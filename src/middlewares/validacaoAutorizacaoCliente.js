@@ -1,4 +1,3 @@
-const contaModel = require('../models/contaModel');
 const { StatusCodes } = require('http-status-codes');
 
 const autorizacaoCliente = async (req, res, next) => {

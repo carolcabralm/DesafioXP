@@ -1,7 +1,7 @@
 const { StatusCodes } = require('http-status-codes');
 const ativosService = require('../services/ativosService');
 
-const getByCodAtivoOuCliente = async (req, res, next) => {
+const getByCodAtivoOuCliente = async (req, res) => {
   const { codigo } = req.params;
   const isCodAtivo = await ativosService.isCodAtivoOuCliente(codigo);
   if (!isCodAtivo) {

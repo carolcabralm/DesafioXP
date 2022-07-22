@@ -2,12 +2,12 @@ const { StatusCodes } = require('http-status-codes');
 const contaModel = require('../models/contaModel')
 
 const deposito = async (codCliente, valor) => {
-  const result = await contaModel.deposito(codCliente, valor);
+  await contaModel.deposito(codCliente, valor);
   return { code: StatusCodes.CREATED, response: { message: 'Depósito realizado com sucesso.' } }
 }
 
 const saque = async (codCliente, valor) => {
-  const result = await contaModel.saque(codCliente, valor);
+  await contaModel.saque(codCliente, valor);
   return { code: StatusCodes.CREATED, response: { message: 'Saque realizado com sucesso.' } }
 }
 

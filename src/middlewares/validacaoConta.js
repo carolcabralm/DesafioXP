@@ -2,7 +2,7 @@ const { StatusCodes } = require('http-status-codes');
 const contaModel = require('../models/contaModel');
 
 const validacaoDeposito = async (req, res, next) => {
-  const { codCliente, valor } = req.body;
+  const { valor } = req.body;
   /* const codClienteToken = req.user.codCliente;
   if(codClienteToken !== codCliente) {
     return res.status(401).json({ message: 'Não autorizado' });
