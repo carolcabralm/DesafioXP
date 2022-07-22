@@ -20,9 +20,9 @@ const addAtivoExistente = async (codCliente, codAtivo, qtdeAtivo) => {
     await contaModel.saque(codCliente, valor);
     const [saldo] = await contaModel.saldo(codCliente);
     if (valor > saldo.saldo) {
-      return { code: 200, response: { message: 'Saldo insuficiente' } };
+      return { code: StatusCodes.BAD_REQUEST, response: { message: 'Saldo insuficiente.' } };
     } 
-    return { code: 201, response: { message: `Ativo adicionado com sucesso. Seu saldo atual é de ${saldo.saldo}` }
+    return { code: StatusCodes.CREATED, response: { message: `Ativo adicionado com sucesso. Seu saldo atual é de ${saldo.saldo}.` }
     };
 };
 
@@ -40,7 +40,7 @@ const ativosVender = async (codCliente, codAtivo, qtdeAtivo) => {
   const valor = await valorTotalAtivo(codAtivo, qtdeAtivo);
   await contaModel.deposito(codCliente, valor);
   const [saldo] = await contaModel.saldo(codCliente)
-  return { code: 201, response: { message: `Ativo removido com sucesso. Seu saldo atual é de ${saldo.saldo}` } }
+  return { code: StatusCodes.CREATED, response: { message: `Ativo removido com sucesso. Seu saldo atual é de ${saldo.saldo}.` } }
 }
 
 const valorTotalAtivo = async (codAtivo, qtdeAtivo) => {

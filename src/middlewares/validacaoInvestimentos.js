@@ -30,10 +30,10 @@ const validacaoInvestimentosVender = async (req, res, next) => {
     return res.status(401).json({ message: 'Não autorizado' });
   }  */
   if (quantidadeAtivo === undefined) {
-    return res.status(406).json('Ativo inexistente na carteira.');
+    return res.status(StatusCodes.NOT_FOUND).json('Ativo inexistente na carteira.');
   }
   if(qtdeAtivo > quantidadeAtivo.qtdeAtivo) {
-    return res.status(406).json('Quantidade de ativo disponível menor que a desejada para venda.');
+    return res.status(StatusCodes.NOT_ACCEPTABLE).json('Quantidade de ativo disponível em carteira menor que a desejada para venda.');
   }
   next();
 }
