@@ -43,19 +43,20 @@ Execute os comandos na ordem em que seguem abaixo:
 <details>
   <summary><strong>Possíveis retornos:</strong></summary>
 
-  * **Caso o login seja realizado com sucesso, será retornado conforme abaixo. Obs. O token está sendo retornado apenas para que seja possível copiá-lo para passar como o parâmetro authorization no Header do Postman nos demais endpoints. Desta forma, o usuário logado poderá requisitar somente suas próprias informações:**
+  * **Caso o login seja realizado com sucesso, será retornado conforme abaixo. Obs. O token está sendo retornado apenas para que seja possível copiá-lo para passar como o parâmetro authorization no Header do Postman nos demais endpoints. Desta forma, o usuário logado terá autorização para requisitar somente suas próprias informações:**
     ```json
    {
-   	 "message": "Login realizado com sucesso",
+   	 "message": "Login realizado com sucesso.",
     	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb2RDbGllbnRlIjoxLCJzZW5oYSI6IkNhcm9saW5lIiwiaWF0IjoxNjU4NDM0NzA5LCJleHAiOjE2NTg0Nzc5MDl9.3F9UCKVD-5tS4KocG7bfoSWv2DwDUem2TKbld-ZA16s"
 }
     ```
 
   * **Caso usuário ou senha estejam incorretos, será retornado:**
     ```json
-{
-   	 "message": "Cliente não encontrado"
-}
+    {
+    	"message": "Usuário ou senha incorretos. Favor verificar seu dados."
+    }
+
     ```
 
 <br />
@@ -74,31 +75,52 @@ Execute os comandos na ordem em que seguem abaixo:
 ```
 <details>
   <summary><strong>Possíveis retornos:</strong></summary>
-
-  * **Caso o usuário da requisição não seja o mesmo usuário logado, o retorno será:**
+  
+  * **Caso o usuário da requisição não esteja logado, o retorno será:**
     ```json
     {
-   	  FALTA
+    	"message": "Usuário não logado."
+    }
+    ```
+    
+  * **Caso a sessão do usuário da requisição esteja expirada (após 12h do login), o retorno será:**
+    ```json
+    {
+    	"message": "Sessão expirada. Realize login novamente para continuar."
+    }
+    ```
+
+  * **Caso o usuário da requisição solicite informações de outro usuário, o retorno será:**
+    ```json
+    {
+    	"message": "Acesso negado."
     }
     ```
 
   * **Caso o usuário tente comprar um ativo inexistente na base de ativos da XP, o retorno será:**
     ```json
     {
-   	 FALTA
+   	 "message": "Ativo não encontrado."
     }
     ```
  * **Caso o usuário tente comprar uma quantidade maior do ativo que a existente, o retorno será:**
     ```json
     {
-   	 FALTA
+   	 "message": "Quantidade de ativo disponível menor que a desejada."
     }
     ```
 
   * **Caso o usuário não tenha saldo suficiente para a compra da quantidade desejada do ativo, o retorno será:**
     ```json
     {
-   	 FALTA
+   	 "message": "Saldo insuficiente."
+    }
+    ```
+    
+  * **Caso a compra do ativo seja realizada com sucesso, o retorno será:**
+    ```json
+    {
+   	 "message": "Ativo inserido com sucesso. Seu saldo atual é de ${saldo_atual}."
     }
     ```
 
@@ -110,28 +132,176 @@ Execute os comandos na ordem em que seguem abaixo:
 
 - Ao acessar este endpoint, o usuário poderá realizar a venda de um ativo.
 - O corpo da requisição deverá ter o seguinte formato:
+```json
+{
+    "codCliente": 1,
+    "codAtivo": "BBDC4",
+    "qtdeAtivo": 5
+}
+```
+<details>
+  <summary><strong>Possíveis retornos:</strong></summary>
 
-- Caso o usuário da requisição não seja o mesmo usuário logado, o retorno será:
+  * **Caso o usuário da requisição não seja o mesmo usuário logado, o retorno será:**
+    ```json
+    {
+   	  FALTA
+    }
+    ```
 
-- Caso o usuário tente vender um ativo inexistente em sua carteira, o retorno será:
+  * **Caso o usuário tente vender um ativo inexistente em sua carteira, o retorno será:**
+    ```json
+    {
+   	 FALTA
+    }
+    ```
+ * **Caso o usuário tente vender uma quantidade maior do ativo que a existente em sua carteira, o retorno será:**
+    ```json
+    {
+   	 FALTA
+    }
+    ```
 
-- Caso o usuário tente vender uma quantidade maior do ativo que a existente em sua carteira, o retorno será:
+  * **QUE MAIS**
+    ```json
+    {
+   	 FALTA
+    }
+    ```
+
+<br />
+</details>
 
 
 ### Endpoint GET (/ativos/{codCliente})
 
 - Ao acessar este endpoint, o usuário poderá consultar sua carteira de ativos, com informações de quantidade e preço unitário de cada ativo.
 - O corpo da requisição deverá ter o seguinte formato:
+```json
+{
+    "codCliente": 1,
+    "codAtivo": "BBDC4",
+    "qtdeAtivo": 5
+}
+```
+<details>
+  <summary><strong>Possíveis retornos:</strong></summary>
 
-- Caso o usuário da requisição não seja o mesmo usuário logado, o retorno será:
+  * **Caso o usuário da requisição não seja o mesmo usuário logado, o retorno será:**
+    ```json
+    {
+   	  FALTA
+    }
+    ```
+
+  * **QUE MAIS:**
+    ```json
+    {
+   	 FALTA
+    }
+    ```
+ * **QUE MAIS:**
+    ```json
+    {
+   	 FALTA
+    }
+    ```
+
+  * **QUE MAIS:**
+    ```json
+    {
+   	 FALTA
+    }
+    ```
+
+<br />
+</details>
 
 ### Endpoint GET (/ativos/{codAtivo})
 
 
 ### Endpoint POST (/conta/deposito)
+```json
+{
+    "codCliente": 1,
+    "codAtivo": "BBDC4",
+    "qtdeAtivo": 5
+}
+```
+<details>
+  <summary><strong>Possíveis retornos:</strong></summary>
+
+  * **Caso o usuário da requisição não seja o mesmo usuário logado, o retorno será:**
+    ```json
+    {
+   	  FALTA
+    }
+    ```
+
+  * **QUE MAIS**
+    ```json
+    {
+   	 FALTA
+    }
+    ```
+ * **QUE MAIS:**
+    ```json
+    {
+   	 FALTA
+    }
+    ```
+
+  * **QUE MAIS:**
+    ```json
+    {
+   	 FALTA
+    }
+    ```
+
+<br />
+</details>
 
 
 ### Endpoint POST (/conta/saque)
+```json
+{
+    "codCliente": 1,
+    "codAtivo": "BBDC4",
+    "qtdeAtivo": 5
+}
+```
+<details>
+  <summary><strong>Possíveis retornos:</strong></summary>
+
+  * **Caso o usuário da requisição não seja o mesmo usuário logado, o retorno será:**
+    ```json
+    {
+   	  FALTA
+    }
+    ```
+
+  * **QUE MAIS**
+    ```json
+    {
+   	 FALTA
+    }
+    ```
+ * **QUE MAIS:**
+    ```json
+    {
+   	 FALTA
+    }
+    ```
+
+  * **QUE MAIS:**
+    ```json
+    {
+   	 FALTA
+    }
+    ```
+
+<br />
+</details>
 
 
 ### Endpoint GET (/conta/{codCliente})
