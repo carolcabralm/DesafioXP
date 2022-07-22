@@ -1,17 +1,18 @@
+const { StatusCodes } = require('http-status-codes');
 const ativosModel = require('../models/ativosModel');
 
 const getByCodCliente = async (codCliente) => {
   const result = await ativosModel.getByCodCLiente(codCliente);
   /* if (result.length === 0) {
     return { code: 404, response: { message: 'Cliente não encontrado' } }
-  } */ return { code: 201, response: result }
+  } */ return { code: StatusCodes.OK, response: result }
 }
 
 const getByCodAtivo = async (codAtivo) => {
   const [result] = await ativosModel.getByCodAtivo(codAtivo);
   if (result.length === 0) {
-    return { code: 404, response: { message: 'Ativo não encontrado' } }
-  } return { code: 201, response: result }
+    return { code: StatusCodes.NOT_FOUND, response: { message: 'Ativo não encontrado.' } }
+  } return { code: StatusCodes.OK, response: result }
 }
 
 const isCodAtivoOuCliente = async (codigo) => {
