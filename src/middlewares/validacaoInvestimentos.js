@@ -13,7 +13,7 @@ const validacaoInvestimentosComprar = async (req, res, next) => {
   } 
 
   if(qtdeAtivo > quantidadeAtivo.qtdeAtivo) {
-    return res.status(StatusCodes.NOT_ACCEPTABLE).json('Quantidade de ativo disponível menor que a desejada.');
+    return res.status(StatusCodes.NOT_ACCEPTABLE).json({ message: 'Quantidade de ativo disponível menor que a desejada.' });
   } 
   next();
 }
@@ -23,10 +23,10 @@ const validacaoInvestimentosVender = async (req, res, next) => {
   const [quantidadeAtivo] = await investimentosModel.getQtdeAtivoCarteira(codCliente, codAtivo);
   
   if (quantidadeAtivo === undefined) {
-    return res.status(StatusCodes.NOT_FOUND).json('Ativo inexistente na carteira.');
+    return res.status(StatusCodes.NOT_FOUND).json({ message: 'Ativo inexistente na carteira.' });
   }
   if(qtdeAtivo > quantidadeAtivo.qtdeAtivo) {
-    return res.status(StatusCodes.NOT_ACCEPTABLE).json('Quantidade de ativo disponível em carteira menor que a desejada para venda.');
+    return res.status(StatusCodes.NOT_ACCEPTABLE).json({ message: 'Quantidade de ativo disponível em carteira menor que a desejada para venda.' });
   }
   next();
 }
