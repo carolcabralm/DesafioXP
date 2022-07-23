@@ -5,7 +5,7 @@ const contaService = require('../../src/services/contaService');
 const { describe, before, after/* , it */ } = require('mocha');
 const { response } = require('express');
 
-describe('3 A rota /conta/:codCliente deve retornar o código e o saldo do cliente com código presente na URL', () => {
+describe('A rota /conta/:codCliente deve retornar o código e o saldo do cliente com código presente na URL', () => {
   const req = { params: { codCliente: 1 } };
   const res = {};
   

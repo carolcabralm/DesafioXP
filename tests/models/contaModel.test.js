@@ -5,7 +5,7 @@ const contaModel = require('../../src/models/contaModel');
 const { describe, before, after, it } = require('mocha');
 
 
-describe('1 A rota /conta/:codCliente deve retornar o código e o saldo do cliente com código presente na URL', () => {
+describe('A rota /conta/:codCliente deve retornar o código e o saldo do cliente com código presente na URL', () => {
   before(async () => {
     const body = [{
       "codCliente": "1",
