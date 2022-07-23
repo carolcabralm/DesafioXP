@@ -2,30 +2,6 @@ const investimentosModel = require('../models/investimentosModel');
 const contaModel = require('../models/contaModel');
 const { StatusCodes } = require('http-status-codes');
 
-const addAtivoNovo = async (codCliente, codAtivo, qtdeAtivo) => {
-  await investimentosModel.addAtivoNovo(codCliente, codAtivo, qtdeAtivo);
-    const valor = await valorTotalAtivo(codAtivo, qtdeAtivo);
-    await contaModel.saque(codCliente, valor);
-    const [saldo] = await contaModel.saldo(codCliente);
-    if (valor < saldo.saldo) {
-      return { code: StatusCodes.BAD_REQUEST, response: { message: 'Saldo insuficiente.' } };
-    } 
-    return { code: StatusCodes.CREATED, response: { message: `Ativo inserido com sucesso. Seu saldo atual é de ${saldo.saldo}.` }
-    };
-};
-
-const addAtivoExistente = async (codCliente, codAtivo, qtdeAtivo) => {
-  await investimentosModel.addAtivoExistente(codCliente, codAtivo, qtdeAtivo);
-    const valor = await valorTotalAtivo(codAtivo, qtdeAtivo);
-    await contaModel.saque(codCliente, valor);
-    const [saldo] = await contaModel.saldo(codCliente);
-    if (valor > saldo.saldo) {
-      return { code: StatusCodes.BAD_REQUEST, response: { message: 'Saldo insuficiente.' } };
-    } 
-    return { code: StatusCodes.CREATED, response: { message: `Ativo adicionado com sucesso. Seu saldo atual é de ${saldo.saldo}.` }
-    };
-};
-
 const ativosComprar = async (codCliente, codAtivo, qtdeAtivo) => {
   const getArray = await investimentosModel.getAll();
   const findCliente = getArray.filter((cliente) => cliente.codCliente === codCliente);
@@ -42,6 +18,30 @@ const ativosVender = async (codCliente, codAtivo, qtdeAtivo) => {
   const [saldo] = await contaModel.saldo(codCliente)
   return { code: StatusCodes.CREATED, response: { message: `Ativo removido com sucesso. Seu saldo atual é de ${saldo.saldo}.` } }
 }
+
+const addAtivoNovo = async (codCliente, codAtivo, qtdeAtivo) => {
+  await investimentosModel.addAtivoNovo(codCliente, codAtivo, qtdeAtivo);
+    const valor = await valorTotalAtivo(codAtivo, qtdeAtivo);
+    const [saldo] = await contaModel.saldo(codCliente);
+    if (valor < saldo.saldo) {
+      return { code: StatusCodes.BAD_REQUEST, response: { message: 'Saldo insuficiente.' } };
+    } 
+    await contaModel.saque(codCliente, valor);
+    return { code: StatusCodes.CREATED, response: { message: `Ativo inserido com sucesso. Seu saldo atual é de ${saldo.saldo}.` }
+    };
+};
+
+const addAtivoExistente = async (codCliente, codAtivo, qtdeAtivo) => {
+  await investimentosModel.addAtivoExistente(codCliente, codAtivo, qtdeAtivo);
+    const valor = await valorTotalAtivo(codAtivo, qtdeAtivo);
+    const [saldo] = await contaModel.saldo(codCliente);
+    if (valor > saldo.saldo) {
+      return { code: StatusCodes.BAD_REQUEST, response: { message: 'Saldo insuficiente.' } };
+    } 
+    await contaModel.saque(codCliente, valor);
+    return { code: StatusCodes.CREATED, response: { message: `Ativo adicionado com sucesso. Seu saldo atual é de ${saldo.saldo}.` }
+    };
+};
 
 const valorTotalAtivo = async (codAtivo, qtdeAtivo) => {
   const [precoAtivo] = await investimentosModel.precoAtivo(codAtivo);
