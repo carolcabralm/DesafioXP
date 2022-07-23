@@ -315,7 +315,7 @@ Execute os comandos na ordem em que seguem abaixo:
  * **Caso o usuário da requisição tente realizar um depósito com valor igual ou inferior a zero, o retorno será:**
   ```json
       {
-          "message": "Quantidade depositada deve ser maior que zero."
+          "message": "Valor deve ser maior que zero."
       }
   ```
 
@@ -368,6 +368,12 @@ Execute os comandos na ordem em que seguem abaixo:
   ```json
       {
           "message": "Saldo insuficiente."
+      }
+  ```
+  * **Caso o usuário da requisição tente realizar um saque com valor igual ou inferior a zero, o retorno será:**
+  ```json
+      {
+          "message": "Valor deve ser maior que zero."
       }
   ```
 
