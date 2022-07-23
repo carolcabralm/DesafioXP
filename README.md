@@ -4,7 +4,7 @@
 ## Resumo
 Tendo como base o dia a dia da XP, foi desenvolvida a parte de back-end para um aplicativo de investimentos em ações. Por meio deste aplicativo, um cliente da XP é capaz de realizar seu login para comprar e vender ações, consultar sua carteira de ativos, realizar depósitos e saques em sua conta e consultar seu saldo.
 
-## Explicação da minha tomada de decisão na abordagem do desafio
+## Explicação da decisão na abordagem do desafio
 Decidi fazer o projeto em JavaScript, por ser  a linguagem que tenho mais familiaridade e também por ser adequada ao tipo de projeto. Para o token de autenticação foi utilizado o JWT (JSON Web Token). Para o banco de dados foi utilizado o MySQL. Foi construída uma base de dados com 3 clientes cadastrados, cada um com sua carteira de ativos e saldo em conta digital. Além disso, foi feita uma lista de ativos existentes, cada um com suas quantidades e preços disponíveis para compra e venda.
 
 ## Instruções de como compilar e executar o projeto

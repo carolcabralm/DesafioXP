@@ -27,7 +27,8 @@ const addAtivoNovo = async (codCliente, codAtivo, qtdeAtivo) => {
     } 
     await investimentosModel.addAtivoNovo(codCliente, codAtivo, qtdeAtivo);
     await contaModel.saque(codCliente, valor);
-    return { code: StatusCodes.CREATED, response: { message: `Ativo inserido com sucesso. Seu saldo atual é de ${saldo.saldo}.` }
+    const [novoSaldo] = await contaModel.saldo(codCliente);
+    return { code: StatusCodes.CREATED, response: { message: `Ativo inserido com sucesso. Seu saldo atual é de ${novoSaldo.saldo}.` }
     };
 };
 
@@ -39,7 +40,8 @@ const addAtivoExistente = async (codCliente, codAtivo, qtdeAtivo) => {
     } 
     await investimentosModel.addAtivoExistente(codCliente, codAtivo, qtdeAtivo);
     await contaModel.saque(codCliente, valor);
-    return { code: StatusCodes.CREATED, response: { message: `Ativo adicionado com sucesso. Seu saldo atual é de ${saldo.saldo}.` }
+    const [novoSaldo] = await contaModel.saldo(codCliente);
+    return { code: StatusCodes.CREATED, response: { message: `Ativo adicionado com sucesso. Seu saldo atual é de ${novoSaldo.saldo}.` }
     };
 };
 

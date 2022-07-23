@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS  ativos
 CREATE TABLE IF NOT EXISTS  clientes
 (
 	codCliente INT AUTO_INCREMENT PRIMARY KEY,
-	nomeCliente VARCHAR(30) NOT NULL,
+	senha VARCHAR(30) NOT NULL,
     saldo DECIMAL(10, 2) NOT NULL
 );
 
@@ -50,7 +50,7 @@ VALUES ('PETR4', 14300, 27.66),
 	('POSI3', 4500, 5.75);
 	
     
-INSERT INTO desafio_xp.clientes (codCliente, nomeCliente, saldo)
+INSERT INTO desafio_xp.clientes (codCliente, senha, saldo)
 VALUES (1, 'Caroline', 358014),
 	(2, 'Fábio', 50000),
 	(3, 'Lívia', 1000);
