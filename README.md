@@ -5,9 +5,10 @@
 Tendo como base o dia a dia da XP, foi desenvolvida a parte de back-end para um aplicativo de investimentos em ações. Por meio deste aplicativo, um cliente da XP é capaz de realizar seu login para comprar e vender ações, consultar sua carteira de ativos, realizar depósitos e saques em sua conta e consultar seu saldo.
 
 ## Explicação da minha tomada de decisão na abordagem do desafio
-Decidi fazer o projeto em JavaScript, por ser  a linguagem que tenho mais familiaridade e também por ser adequada ao tipo de projeto. Para o token de autenticação foi utilizado o JWT (JSON Web Token). Para o banco de dados foi utilizado o MySQL.
+Decidi fazer o projeto em JavaScript, por ser  a linguagem que tenho mais familiaridade e também por ser adequada ao tipo de projeto. Para o token de autenticação foi utilizado o JWT (JSON Web Token). Para o banco de dados foi utilizado o MySQL. Foi construída uma base de dados com 3 clientes cadastrados, cada um com sua carteira de ativos e saldo em conta digital. Além disso, foi feita uma lista de ativos existentes, cada um com suas quantidades e preços disponíveis para compra e venda.
 
 ## Instruções de como compilar e executar o projeto
+
 Execute os comandos na ordem em que seguem abaixo:
 
 1. `docker-compose up -d`  Para inicializar os containers do docker.
@@ -40,16 +41,16 @@ Execute os comandos na ordem em que seguem abaixo:
     "senha": "Caroline"
   }
 ```
-<details>
-  <summary><strong>Possíveis retornos:</strong></summary>
+- Caso o login seja realizado com sucesso, será retornado conforme abaixo. Obs. O token está sendo retornado para que seja possível copiá-lo para passar como o parâmetro authorization no Header do Postman nos demais endpoints. Desta forma, o usuário logado terá autorização para requisitar somente suas próprias informações:
+```json
+	{
+		"message": "Login realizado com sucesso.",
+		"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb2RDbGllbnRlIjoxLCJzZW5oYSI6IkNhcm9saW5lIiwiaWF0IjoxNjU4NDM0NzA5LCJleHAiOjE2NTg0Nzc5MDl9.3F9UCKVD-5tS4KocG7bfoSWv2DwDUem2TKbld-ZA16s"
+	}
+```
 
-  * **Caso o login seja realizado com sucesso, será retornado conforme abaixo. Obs. O token está sendo retornado apenas para que seja possível copiá-lo para passar como o parâmetro authorization no Header do Postman nos demais endpoints. Desta forma, o usuário logado terá autorização para requisitar somente suas próprias informações:**
-  ```json
-    	{
-		    "message": "Login realizado com sucesso.",
-		    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb2RDbGllbnRlIjoxLCJzZW5oYSI6IkNhcm9saW5lIiwiaWF0IjoxNjU4NDM0NzA5LCJleHAiOjE2NTg0Nzc5MDl9.3F9UCKVD-5tS4KocG7bfoSWv2DwDUem2TKbld-ZA16s"
-    	}
-  ```
+<details>
+  <summary><strong>Possíveis retornos em caso de erro:</strong></summary>
 
   * **Caso usuário ou senha estejam incorretos, será retornado:**
   ```json
@@ -72,8 +73,16 @@ Execute os comandos na ordem em que seguem abaixo:
     "qtdeAtivo": 5
   }
 ```
+
+- Caso a compra do ativo seja realizada com sucesso, o retorno será:
+```json
+	{
+		"message": "Ativo inserido com sucesso. Seu saldo atual é de ${saldo_atual}."
+	}
+```
+
 <details>
-  <summary><strong>Possíveis retornos:</strong></summary>
+  <summary><strong>Possíveis retornos em caso de erro:</strong></summary>
   
   * **Caso o usuário da requisição não esteja logado, o retorno será:**
   ```json
@@ -115,13 +124,6 @@ Execute os comandos na ordem em que seguem abaixo:
 		  "message": "Saldo insuficiente."
     }
   ```
-    
-  * **Caso a compra do ativo seja realizada com sucesso, o retorno será:**
-  ```json
-    {
-		  "message": "Ativo inserido com sucesso. Seu saldo atual é de ${saldo_atual}."
-    }
-  ```
 
 <br />
 </details>
@@ -138,8 +140,16 @@ Execute os comandos na ordem em que seguem abaixo:
     "qtdeAtivo": 5
   }
 ```
+
+- Caso a venda do ativo seja realizada com sucesso, o retorno será:
+```json
+	{
+		"message": "Ativo removido com sucesso. Seu saldo atual é de ${saldo_atual}."
+	}
+```
+
 <details>
-  <summary><strong>Possíveis retornos:</strong></summary>
+  <summary><strong>Possíveis retornos em caso de erro:</strong></summary>
   
   * **Caso o usuário da requisição não esteja logado, o retorno será:**
    
@@ -176,13 +186,6 @@ Execute os comandos na ordem em que seguem abaixo:
    	}
   ```
 
-  * **Caso a venda do ativo seja realizada com sucesso, o retorno será:**
-  ```json
-    {
-		  "message": "Ativo removido com sucesso. Seu saldo atual é de ${saldo_atual}."
-   	}
-  ```
-
 <br />
 </details>
 
@@ -190,9 +193,26 @@ Execute os comandos na ordem em que seguem abaixo:
 ### Endpoint GET (/ativos/{codCliente})
 
 - Ao acessar este endpoint, o usuário poderá consultar sua carteira de ativos, com informações de quantidade e preço unitário de cada ativo.
+- Em caso de sucesso na requisição, segue um exemplo de retorno, que dependerá da carteira do cliente selecionado:
+```json
+	[
+		{
+			"codCliente": 1,
+      "codAtivo": "BBDC4",
+      "qtdeAtivo": 40,
+      "valor": "16.35"
+		},
+		{
+			"codCliente": 1,
+      "codAtivo": "PETR4",
+      "qtdeAtivo": 1,
+      "valor": "27.66"
+		}
+	]
+```
 
 <details>
-  <summary><strong>Possíveis retornos:</strong></summary>
+  <summary><strong>Possíveis retornos em caso de erro:</strong></summary>
   
   * **Caso o usuário da requisição não esteja logado, o retorno será:**   
   ```json
@@ -215,34 +235,23 @@ Execute os comandos na ordem em que seguem abaixo:
    	}
   ```
 
-
-  * **Em caso de sucesso na requisição, o retorno será:**
-  ```json
-    [
-        {
-      "codCliente": 1,
-      "codAtivo": "BBDC4",
-      "qtdeAtivo": 40,
-      "valor": "16.35"
-        },
-        {
-      "codCliente": 1,
-      "codAtivo": "PETR4",
-      "qtdeAtivo": 1,
-      "valor": "27.66"
-        }
-    ]
-  ```
-
   
 <br />
 </details>
 
 ### Endpoint GET (/ativos/{codAtivo})
 - Ao acessar este endpoint, o usuário poderá consultar os ativos disponíveis para compra na XP, com informações de quantidade e preço unitário de cada ativo.
+- Em caso de sucesso na requisição, segue um exemplo de retorno, que dependerá do ativo escolhido:
+```json
+	{
+		"codAtivo": "PETR4",
+    "qtdeAtivo": 14300,
+    "precoAtivo": "27.66"
+	}
+```
 
 <details>
-  <summary><strong>Possíveis retornos:</strong></summary>
+  <summary><strong>Possíveis retornos em caso de erro:</strong></summary>
 
   * **Caso o usuário da requisição não esteja logado, o retorno será:**   
   ```json
@@ -258,14 +267,6 @@ Execute os comandos na ordem em que seguem abaixo:
     }
   ```
 
-  * **Em caso de sucesso na requisição, o retorno será:**
-  ```json
-    {
-      "codAtivo": "PETR4",
-      "qtdeAtivo": 14300,
-      "precoAtivo": "27.66"
-   	}
-  ```
 <br />
 </details>
 
@@ -274,13 +275,21 @@ Execute os comandos na ordem em que seguem abaixo:
 - Ao acessar este endpoint, o usuário poderá realizar um depósito em sua conta digital.
 - O corpo da requisição deverá ter o seguinte formato:
 ```json
-{
+  {
     "codCliente": 1,
     "valor": 44
-}
+  }
 ```
+
+- Caso o depósito seja realizado com sucesso, o retorno será:
+```json
+	{
+		"message": "Depósito realizado com sucesso."
+	}
+```
+
 <details>
-  <summary><strong>Possíveis retornos:</strong></summary>
+  <summary><strong>Possíveis retornos em caso de erro:</strong></summary>
   
   * **Caso o usuário da requisição não esteja logado, o retorno será:**   
   ```json
@@ -310,28 +319,29 @@ Execute os comandos na ordem em que seguem abaixo:
    	}
   ```
 
-  * **Caso o depósito seja realizado com sucesso, o retorno será:**
-  ```json
-    {
-		  "message": "Depósito realizado com sucesso."
-   	}
-  ```
 
 <br />
 </details>
 
 
 ### Endpoint POST (/conta/saque)
-- Ao acessar este endpoint, o usuário poderá consultar sua carteira de ativos, com informações de quantidade e preço unitário de cada ativo.
+- Ao acessar este endpoint, o usuário poderá realizar um saque em sua conta digital.
 - O corpo da requisição deverá ter o seguinte formato:
 ```json
-{
-  "codCliente": 1,
-  "valor": 150
-}
+  {
+    "codCliente": 1,
+    "valor": 150
+  }
 ```
+- Caso o saque seja realizado com sucesso, o retorno será:
+```json
+	{
+		"message": "Saque realizado com sucesso."
+	}
+```
+
 <details>
-  <summary><strong>Possíveis retornos:</strong></summary>
+  <summary><strong>Possíveis retornos em caso de erro:</strong></summary>
   
   * **Caso o usuário da requisição não esteja logado, o retorno será:**   
   ```json
@@ -361,19 +371,20 @@ Execute os comandos na ordem em que seguem abaixo:
    	}
   ```
 
-  * **Caso o saque seja realizado com sucesso, o retorno será:**
-  ```json
-    {
-		  "message": "Saque realizado com sucesso."
-   	}
-  ```
 
 <br />
 </details>
 
 
 ### Endpoint GET (/conta/{codCliente})
-- Ao acessar este endpoint, o usuário poderá consultar sua carteira de ativos, com informações de quantidade e preço unitário de cada ativo.
+- Ao acessar este endpoint, o usuário poderá consultar seu saldo em sua conta digital.
+- Caso a requisição seja realizado com sucesso, segue um exemplo de retorno, que dependerá do cliente escolhido:
+```json
+	{
+		"codCliente": "1",
+		"saldo": "372060.40"
+	}
+```
 
 <details>
   <summary><strong>Possíveis retornos:</strong></summary>
@@ -399,14 +410,5 @@ Execute os comandos na ordem em que seguem abaixo:
    	}
   ```
 
-  * **Caso a requisição seja realizado com sucesso, o retorno será:**
-  ```json
-    {
-		  "codCliente": "1",
-		  "saldo": "372060.40"
-   	}
-  ```
 <br />
 </details>
-
-
