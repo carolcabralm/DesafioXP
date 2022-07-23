@@ -3,9 +3,7 @@ const ativosModel = require('../models/ativosModel');
 
 const getByCodCliente = async (codCliente) => {
   const result = await ativosModel.getByCodCLiente(codCliente);
-  /* if (result.length === 0) {
-    return { code: 404, response: { message: 'Cliente não encontrado' } }
-  } */ return { code: StatusCodes.OK, response: result }
+  return { code: StatusCodes.OK, response: result }
 }
 
 const getByCodAtivo = async (codAtivo) => {
@@ -18,7 +16,9 @@ const getByCodAtivo = async (codAtivo) => {
 const isCodAtivoOuCliente = async (codigo) => {
   const getAtivos = await ativosModel.getAll()
   const isCodAtivo = getAtivos.some((ativo) => ativo.codAtivo === codigo);
-  return isCodAtivo;
+  if (isCodAtivo) {
+    return getByCodAtivo(codigo);
+  } return getByCodCliente(codigo);
 }
 
 module.exports = {

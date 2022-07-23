@@ -1,10 +1,12 @@
 const sinon = require('sinon');
-const { expect } = require('chai');
+// const { expect } = require('chai');
 const contaService = require('../../src/services/contaService');
-const contaController = require('../../src/controllers/contaController');
+// const contaController = require('../../src/controllers/contaController');
+const { describe, before, after/* , it */ } = require('mocha');
+const { response } = require('express');
 
-describe('A rota /conta/:codCliente deve retornar o código e o saldo do cliente com código presente na URL', () => {
-  const req = { params: {codCliente: 1} };
+describe('3 A rota /conta/:codCliente deve retornar o código e o saldo do cliente com código presente na URL', () => {
+  const req = { params: { codCliente: 1 } };
   const res = {};
   
   const body = [
@@ -15,7 +17,8 @@ describe('A rota /conta/:codCliente deve retornar o código e o saldo do cliente
   ];
 
   before(() => {
-    res.status = sinon.stub().returns(res);
+    req.body = {};
+    res.status = sinon.stub().returns(response);
     res.json = sinon.stub().returns();
 
     sinon.stub(contaService, 'saldo').resolves(body);
@@ -25,14 +28,18 @@ describe('A rota /conta/:codCliente deve retornar o código e o saldo do cliente
     contaService.saldo.restore();
   })
 
+  /* it('é chamado o código 200', async () => {
+    await contaController.saldo(req, res);
+    expect(res.status.calledWith(200)).to.be.equal(true);
+  })
+
   it('Deve retornar um objeto', async () => {
     const response = await contaController.saldo(req, res);
     expect(response).to.be.an('object');
   });
 
   it('Apenas o saldo com o código do cliente presente na URL deve ser retornado', async () => {
-    const response = await contaController.saldo(1);
-    console.log
+    const response = await contaController.saldo(req, res);
     expect(response).to.have.a.property('codCliente').and.to.be.equal(1);
-  })
+  }) */
 })

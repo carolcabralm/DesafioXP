@@ -1,33 +1,10 @@
-const { StatusCodes } = require('http-status-codes');
 const ativosService = require('../services/ativosService');
 
 const getByCodAtivoOuCliente = async (req, res) => {
   const { codigo } = req.params;
-  const isCodAtivo = await ativosService.isCodAtivoOuCliente(codigo);
-  if (!isCodAtivo) {
-    const codClienteToken = req.user.codCliente;
-    if(codClienteToken !== +codigo) return res.status(StatusCodes.FORBIDDEN).json({ message: 'Acesso negado.' });
-
-    const { code, response } = await ativosService.getByCodCliente(codigo);
-    return res.status(code).json(response);
-  }
-  if (isCodAtivo) {
-    const { code, response } = await ativosService.getByCodAtivo(codigo);
-    return res.status(code).json(response);
-  }
-};
-
-// Modificar a partir daqui e colocar 2 no de cima
-
-/* getByCodAtivoOuCliente = async (req, res, next) => {
-  const { codigo } = req.params;
-  const isCodAtivo = await ativosService.isCodAtivoOuCliente(codigo);
-  if (isCodAtivo) {
-
-  }
-  if (isCliente)
-} */
-
+  const { code, response } = await ativosService.isCodAtivoOuCliente(codigo);
+  return res.status(code).json(response);
+}
 
 module.exports = {
   getByCodAtivoOuCliente,
