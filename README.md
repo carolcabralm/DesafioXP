@@ -195,20 +195,20 @@ Execute os comandos na ordem em que seguem abaixo:
 - Ao acessar este endpoint, o usuário poderá consultar sua carteira de ativos, com informações de quantidade e preço unitário de cada ativo.
 - Em caso de sucesso na requisição, segue um exemplo de retorno, que dependerá da carteira do cliente selecionado:
 ```json
-	[
-		{
-			"codCliente": 1,
-      "codAtivo": "BBDC4",
-      "qtdeAtivo": 40,
-      "valor": "16.35"
-		},
-		{
-			"codCliente": 1,
-      "codAtivo": "PETR4",
-      "qtdeAtivo": 1,
-      "valor": "27.66"
-		}
-	]
+    [
+        {
+            "codCliente": 1,
+            "codAtivo": "BBDC4",
+            "qtdeAtivo": 40,
+            "valor": "16.35"
+        },
+        {
+            "codCliente": 1,
+            "codAtivo": "PETR4",
+            "qtdeAtivo": 1,
+            "valor": "27.66"
+        }
+    ]
 ```
 
 <details>
@@ -387,7 +387,7 @@ Execute os comandos na ordem em que seguem abaixo:
 ```
 
 <details>
-  <summary><strong>Possíveis retornos:</strong></summary>
+  <summary><strong>Possíveis retornos em caso de erro:</strong></summary>
   
   * **Caso o usuário da requisição não esteja logado, o retorno será:**   
   ```json
