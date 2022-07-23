@@ -38,7 +38,6 @@ const { validationsInvestimentos } = require('../middlewares/joiValidations');
  *          qtdeAtivo: 5
  */
 
-
 /**
  * @swagger
  *  /investimentos/comprar:
@@ -72,7 +71,6 @@ const { validationsInvestimentos } = require('../middlewares/joiValidations');
  *                 example:
  *                   message: Saldo insuficiente.
  */
-
 
 router.post('/investimentos/comprar', validationsInvestimentos, auth, autorizacaoCliente, validacaoInvestimentosComprar, investimentosController.investimentosComprar);
 
