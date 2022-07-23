@@ -20,24 +20,24 @@ const ativosVender = async (codCliente, codAtivo, qtdeAtivo) => {
 }
 
 const addAtivoNovo = async (codCliente, codAtivo, qtdeAtivo) => {
-  await investimentosModel.addAtivoNovo(codCliente, codAtivo, qtdeAtivo);
     const valor = await valorTotalAtivo(codAtivo, qtdeAtivo);
     const [saldo] = await contaModel.saldo(codCliente);
-    if (valor < saldo.saldo) {
+    if (valor > saldo.saldo) {
       return { code: StatusCodes.BAD_REQUEST, response: { message: 'Saldo insuficiente.' } };
     } 
+    await investimentosModel.addAtivoNovo(codCliente, codAtivo, qtdeAtivo);
     await contaModel.saque(codCliente, valor);
     return { code: StatusCodes.CREATED, response: { message: `Ativo inserido com sucesso. Seu saldo atual é de ${saldo.saldo}.` }
     };
 };
 
 const addAtivoExistente = async (codCliente, codAtivo, qtdeAtivo) => {
-  await investimentosModel.addAtivoExistente(codCliente, codAtivo, qtdeAtivo);
     const valor = await valorTotalAtivo(codAtivo, qtdeAtivo);
     const [saldo] = await contaModel.saldo(codCliente);
     if (valor > saldo.saldo) {
       return { code: StatusCodes.BAD_REQUEST, response: { message: 'Saldo insuficiente.' } };
     } 
+    await investimentosModel.addAtivoExistente(codCliente, codAtivo, qtdeAtivo);
     await contaModel.saque(codCliente, valor);
     return { code: StatusCodes.CREATED, response: { message: `Ativo adicionado com sucesso. Seu saldo atual é de ${saldo.saldo}.` }
     };
