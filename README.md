@@ -36,17 +36,17 @@ Execute os comandos na ordem em que seguem abaixo:
 - Ao acessar este endpoint, o usuário deve ser capaz de realizar seu login e, assim, ter seu acesso autorizado aos demais endpoits.
 - O corpo da requisição deverá ter o seguinte formato:
 ```json
-  {
-    "codCliente": 1,
-    "senha": "Caroline"
-  }
+    {
+        "codCliente": 1,
+        "senha": "Caroline"
+    }
 ```
 - Caso o login seja realizado com sucesso, será retornado conforme abaixo. Obs. O token está sendo retornado para que seja possível copiá-lo para passar como o parâmetro authorization no Header do Postman nos demais endpoints. Desta forma, o usuário logado terá autorização para requisitar somente suas próprias informações:
 ```json
-	{
-		"message": "Login realizado com sucesso.",
-		"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb2RDbGllbnRlIjoxLCJzZW5oYSI6IkNhcm9saW5lIiwiaWF0IjoxNjU4NDM0NzA5LCJleHAiOjE2NTg0Nzc5MDl9.3F9UCKVD-5tS4KocG7bfoSWv2DwDUem2TKbld-ZA16s"
-	}
+    {
+        "message": "Login realizado com sucesso.",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb2RDbGllbnRlIjoxLCJzZW5oYSI6IkNhcm9saW5lIiwiaWF0IjoxNjU4NDM0NzA5LCJleHAiOjE2NTg0Nzc5MDl9.3F9UCKVD-5tS4KocG7bfoSWv2DwDUem2TKbld-ZA16s"
+    }
 ```
 
 <details>
@@ -54,9 +54,9 @@ Execute os comandos na ordem em que seguem abaixo:
 
   * **Caso usuário ou senha estejam incorretos, será retornado:**
   ```json
-    {
-		  "message": "Usuário ou senha incorretos. Favor verificar seu dados."
-    }
+      {
+          "message": "Usuário ou senha incorretos. Favor verificar seu dados."
+      }
   ```
 
 <br />
@@ -67,18 +67,18 @@ Execute os comandos na ordem em que seguem abaixo:
 - Ao acessar este endpoint, o usuário poderá realizar a compra de um ativo.
 - O corpo da requisição deverá ter o seguinte formato:
 ```json
-  {
-    "codCliente": 1,
-    "codAtivo": "BBDC4",
-    "qtdeAtivo": 5
-  }
+    {
+        "codCliente": 1,
+        "codAtivo": "BBDC4",
+        "qtdeAtivo": 5
+    }
 ```
 
 - Caso a compra do ativo seja realizada com sucesso, o retorno será:
 ```json
-	{
-		"message": "Ativo inserido com sucesso. Seu saldo atual é de ${saldo_atual}."
-	}
+    {
+        "message": "Ativo inserido com sucesso. Seu saldo atual é de ${saldo_atual}."
+    }
 ```
 
 <details>
@@ -86,43 +86,43 @@ Execute os comandos na ordem em que seguem abaixo:
   
   * **Caso o usuário da requisição não esteja logado, o retorno será:**
   ```json
-    {
-      "message": "Usuário não logado."
-    }
+      {
+          "message": "Usuário não logado."
+      }
   ```
     
   * **Caso a sessão do usuário da requisição esteja expirada (após 12h do login), o retorno será:**
   ```json
-    {
-		  "message": "Sessão expirada. Realize login novamente para continuar."
-    }
+      {
+          "message": "Sessão expirada. Realize login novamente para continuar."
+      }
   ```
 
   * **Caso o usuário da requisição solicite informações de outro usuário, o retorno será:**
   ```json
-    {
-		  "message": "Acesso negado."
-   	}
+      {
+          "message": "Acesso negado."
+      }
   ```
 
   * **Caso o usuário tente comprar um ativo inexistente na base de ativos da XP, o retorno será:**
   ```json
-    {
-		  "message": "Ativo não encontrado."
-    }
+      {
+          "message": "Ativo não encontrado."
+      }
   ```
   * **Caso o usuário tente comprar uma quantidade maior do ativo que a existente, o retorno será:**
   ```json
-    {
-		  "message": "Quantidade de ativo disponível menor que a desejada."
-    }
+      {
+          "message": "Quantidade de ativo disponível menor que a desejada."
+      }
   ```
 
   * **Caso o usuário não tenha saldo suficiente para a compra da quantidade desejada do ativo, o retorno será:**
   ```json
-    {
-		  "message": "Saldo insuficiente."
-    }
+      {
+          "message": "Saldo insuficiente."
+      }
   ```
 
 <br />
@@ -134,18 +134,18 @@ Execute os comandos na ordem em que seguem abaixo:
 - Ao acessar este endpoint, o usuário poderá realizar a venda de um ativo.
 - O corpo da requisição deverá ter o seguinte formato:
 ```json
-  {
-    "codCliente": 1,
-    "codAtivo": "BBDC4",
-    "qtdeAtivo": 5
-  }
+    {
+        "codCliente": 1,
+        "codAtivo": "BBDC4",
+        "qtdeAtivo": 5
+    }
 ```
 
 - Caso a venda do ativo seja realizada com sucesso, o retorno será:
 ```json
-	{
-		"message": "Ativo removido com sucesso. Seu saldo atual é de ${saldo_atual}."
-	}
+    {
+        "message": "Ativo removido com sucesso. Seu saldo atual é de ${saldo_atual}."
+    }
 ```
 
 <details>
@@ -154,36 +154,36 @@ Execute os comandos na ordem em que seguem abaixo:
   * **Caso o usuário da requisição não esteja logado, o retorno será:**
    
   ```json
-	  {
-		  "message": "Usuário não logado."
-	  }
+      {
+          "message": "Usuário não logado."
+      }
   ```
     
   * **Caso a sessão do usuário da requisição esteja expirada (após 12h do login), o retorno será:**
   ```json
-    {
-		  "message": "Sessão expirada. Realize login novamente para continuar."
-    }
+      {
+          "message": "Sessão expirada. Realize login novamente para continuar."
+      }
   ```
 
   * **Caso o usuário da requisição solicite informações de outro usuário, o retorno será:**
   ```json
-    {
-		  "message": "Acesso negado."
-   	}
+      {
+          "message": "Acesso negado."
+      }
   ```
 
   * **Caso o usuário tente vender um ativo inexistente em sua carteira, o retorno será:**
   ```json
-    {
-		  "message": "Ativo inexistente na carteira."
-   	}
+      {
+          "message": "Ativo inexistente na carteira."
+      }
   ```
  * **Caso o usuário tente vender uma quantidade maior do ativo que a existente em sua carteira, o retorno será:**
   ```json
-    {
-		  "message": "Quantidade de ativo disponível em carteira menor que a desejada para venda."
-   	}
+      {
+          "message": "Quantidade de ativo disponível em carteira menor que a desejada para venda."
+      }
   ```
 
 <br />
@@ -216,23 +216,23 @@ Execute os comandos na ordem em que seguem abaixo:
   
   * **Caso o usuário da requisição não esteja logado, o retorno será:**   
   ```json
-	  {
-		  "message": "Usuário não logado."
-	  }
+      {
+          "message": "Usuário não logado."
+      }
   ```
     
   * **Caso a sessão do usuário da requisição esteja expirada (após 12h do login), o retorno será:**
   ```json
-    {
-		  "message": "Sessão expirada. Realize login novamente para continuar."
-    }
+      {
+          "message": "Sessão expirada. Realize login novamente para continuar."
+      }
   ```
 
   * **Caso o usuário da requisição solicite informações de outro usuário, o retorno será:**
   ```json
-    {
-		  "message": "Acesso negado."
-   	}
+      {
+          "message": "Acesso negado."
+      }
   ```
 
   
@@ -243,11 +243,11 @@ Execute os comandos na ordem em que seguem abaixo:
 - Ao acessar este endpoint, o usuário poderá consultar os ativos disponíveis para compra na XP, com informações de quantidade e preço unitário de cada ativo.
 - Em caso de sucesso na requisição, segue um exemplo de retorno, que dependerá do ativo escolhido:
 ```json
-	{
-		"codAtivo": "PETR4",
-    "qtdeAtivo": 14300,
-    "precoAtivo": "27.66"
-	}
+    {
+        "codAtivo": "PETR4",
+        "qtdeAtivo": 14300,
+        "precoAtivo": "27.66"
+    }
 ```
 
 <details>
@@ -255,16 +255,16 @@ Execute os comandos na ordem em que seguem abaixo:
 
   * **Caso o usuário da requisição não esteja logado, o retorno será:**   
   ```json
-	  {
-	  	"message": "Usuário não logado."
-	  }
+      {
+          "message": "Usuário não logado."
+      }
   ```
     
   * **Caso a sessão do usuário da requisição esteja expirada (após 12h do login), o retorno será:**
   ```json
-    {
-		  "message": "Sessão expirada. Realize login novamente para continuar."
-    }
+      {
+          "message": "Sessão expirada. Realize login novamente para continuar."
+      }
   ```
 
 <br />
@@ -275,17 +275,17 @@ Execute os comandos na ordem em que seguem abaixo:
 - Ao acessar este endpoint, o usuário poderá realizar um depósito em sua conta digital.
 - O corpo da requisição deverá ter o seguinte formato:
 ```json
-  {
-    "codCliente": 1,
-    "valor": 44
-  }
+    {
+        "codCliente": 1,
+        "valor": 44
+    }
 ```
 
 - Caso o depósito seja realizado com sucesso, o retorno será:
 ```json
-	{
-		"message": "Depósito realizado com sucesso."
-	}
+    {
+        "message": "Depósito realizado com sucesso."
+    }
 ```
 
 <details>
@@ -293,30 +293,30 @@ Execute os comandos na ordem em que seguem abaixo:
   
   * **Caso o usuário da requisição não esteja logado, o retorno será:**   
   ```json
-	  {
-		  "message": "Usuário não logado."
-	  }
+      {
+          "message": "Usuário não logado."
+      }
   ```
     
   * **Caso a sessão do usuário da requisição esteja expirada (após 12h do login), o retorno será:**
   ```json
-    {
-		  "message": "Sessão expirada. Realize login novamente para continuar."
-    }
+      {
+          "message": "Sessão expirada. Realize login novamente para continuar."
+      }
   ```
 
   * **Caso o usuário da requisição tente realizar o depósito na conta de outro cliente, o retorno será:**
   ```json
-    {
-		  "message": "Acesso negado."
-   	}
+      {
+          "message": "Acesso negado."
+      }
   ```
 
  * **Caso o usuário da requisição tente realizar um depósito com valor igual ou inferior a zero, o retorno será:**
   ```json
-    {
-		  "message": "Quantidade depositada deve ser maior que zero."
-   	}
+      {
+          "message": "Quantidade depositada deve ser maior que zero."
+      }
   ```
 
 
@@ -328,16 +328,16 @@ Execute os comandos na ordem em que seguem abaixo:
 - Ao acessar este endpoint, o usuário poderá realizar um saque em sua conta digital.
 - O corpo da requisição deverá ter o seguinte formato:
 ```json
-  {
-    "codCliente": 1,
-    "valor": 150
-  }
+    {
+        "codCliente": 1,
+        "valor": 150
+    }
 ```
 - Caso o saque seja realizado com sucesso, o retorno será:
 ```json
-	{
-		"message": "Saque realizado com sucesso."
-	}
+    {
+        "message": "Saque realizado com sucesso."
+    }
 ```
 
 <details>
@@ -345,30 +345,30 @@ Execute os comandos na ordem em que seguem abaixo:
   
   * **Caso o usuário da requisição não esteja logado, o retorno será:**   
   ```json
-	  {
-		  "message": "Usuário não logado."
-	  }
+      {
+          "message": "Usuário não logado."
+      }
   ```
     
   * **Caso a sessão do usuário da requisição esteja expirada (após 12h do login), o retorno será:**
   ```json
-    {
-		  "message": "Sessão expirada. Realize login novamente para continuar."
-    }
+      {
+          "message": "Sessão expirada. Realize login novamente para continuar."
+      }
   ```
 
   * **Caso o usuário da requisição tente realizar o saque na conta de outro cliente, o retorno será:**
   ```json
-    {
-		  "message": "Acesso negado."
-   	}
+      {
+          "message": "Acesso negado."
+      }
   ```
 
  * **Caso o usuário da requisição tente realizar um saque de valor maior que o saldo disponível em sua conta digital, o retorno será:**
   ```json
-    {
-		  "message": "Saldo insuficiente."
-   	}
+      {
+          "message": "Saldo insuficiente."
+      }
   ```
 
 
@@ -380,10 +380,10 @@ Execute os comandos na ordem em que seguem abaixo:
 - Ao acessar este endpoint, o usuário poderá consultar seu saldo em sua conta digital.
 - Caso a requisição seja realizado com sucesso, segue um exemplo de retorno, que dependerá do cliente escolhido:
 ```json
-	{
-		"codCliente": "1",
-		"saldo": "372060.40"
-	}
+    {
+        "codCliente": "1",
+        "saldo": "372060.40"
+    }
 ```
 
 <details>
@@ -391,23 +391,23 @@ Execute os comandos na ordem em que seguem abaixo:
   
   * **Caso o usuário da requisição não esteja logado, o retorno será:**   
   ```json
-	  {
-		  "message": "Usuário não logado."
-	  }
+      {
+          "message": "Usuário não logado."
+      }
   ```
     
   * **Caso a sessão do usuário da requisição esteja expirada (após 12h do login), o retorno será:**
   ```json
-    {
-		  "message": "Sessão expirada. Realize login novamente para continuar."
-    }
+      {
+          "message": "Sessão expirada. Realize login novamente para continuar."
+      }
   ```
 
   * **Caso o usuário da requisição tente acessar o saldo da conta de outro cliente, o retorno será:**
   ```json
-    {
-		  "message": "Acesso negado."
-   	}
+      {
+          "message": "Acesso negado."
+      }
   ```
 
 <br />
