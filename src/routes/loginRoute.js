@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 const loginController = require('../controllers/loginController');
+const { validationsLogin } = require('../middlewares/joiValidations');
 
 /**
  * @swagger
@@ -63,6 +64,6 @@ const loginController = require('../controllers/loginController');
  *                   message: Usuário ou senha incorretos. Favor verificar seu dados.
  */
 
-router.post('/login', loginController.login);
+router.post('/login', validationsLogin, loginController.login);
 
 module.exports = router;

@@ -6,6 +6,7 @@ const contaController = require('../controllers/contaController');
 const { validacaoDeposito, validacaoSaque } = require('../middlewares/validacaoConta');
 const { auth } = require('../middlewares/token');
 const { autorizacaoCliente, autorizacaoClienteParams } = require('../middlewares/validacaoAutorizacaoCliente');
+const { validationsConta } = require('../middlewares/joiValidations');
 
 /**
  * @swagger
@@ -59,7 +60,7 @@ const { autorizacaoCliente, autorizacaoClienteParams } = require('../middlewares
  *                   message: Depósito realizado com sucesso.
  */
 
-router.post('/conta/deposito', auth, autorizacaoCliente, validacaoDeposito, contaController.deposito);
+router.post('/conta/deposito', validationsConta, auth, autorizacaoCliente, validacaoDeposito, contaController.deposito);
 
 /**
  * @swagger
@@ -95,7 +96,7 @@ router.post('/conta/deposito', auth, autorizacaoCliente, validacaoDeposito, cont
  *                   message: Saldo insuficiente.
  */
 
-router.post('/conta/saque', auth, autorizacaoCliente, validacaoSaque, contaController.saque);
+router.post('/conta/saque', validationsConta, auth, autorizacaoCliente, validacaoSaque, contaController.saque);
 
 router.get('/conta/:codCliente', auth, autorizacaoClienteParams, contaController.saldo);
 

@@ -6,6 +6,7 @@ const investimentosController = require('../controllers/investimentosController'
 const { validacaoInvestimentosComprar, validacaoInvestimentosVender } = require('../middlewares/validacaoInvestimentos');
 const { auth } = require('../middlewares/token');
 const { autorizacaoCliente } = require('../middlewares/validacaoAutorizacaoCliente');
+const { validationsInvestimentos } = require('../middlewares/joiValidations');
 
 /**
  * @swagger
@@ -73,7 +74,7 @@ const { autorizacaoCliente } = require('../middlewares/validacaoAutorizacaoClien
  */
 
 
-router.post('/investimentos/comprar', auth, autorizacaoCliente, validacaoInvestimentosComprar, investimentosController.investimentosComprar);
+router.post('/investimentos/comprar', validationsInvestimentos, auth, autorizacaoCliente, validacaoInvestimentosComprar, investimentosController.investimentosComprar);
 
 /**
  * @swagger
@@ -109,7 +110,6 @@ router.post('/investimentos/comprar', auth, autorizacaoCliente, validacaoInvesti
  *                   message: Quantidade de ativo disponível em carteira menor que a desejada para venda.
  */
 
-
-router.post('/investimentos/vender', auth, autorizacaoCliente, validacaoInvestimentosVender, investimentosController.investimentosVender);
+router.post('/investimentos/vender', validationsInvestimentos, auth, autorizacaoCliente, validacaoInvestimentosVender, investimentosController.investimentosVender);
 
 module.exports = router;
