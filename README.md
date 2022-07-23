@@ -5,7 +5,13 @@
 Tendo como base o dia a dia da XP, foi desenvolvida a parte de back-end para um aplicativo de investimentos em ações. Por meio deste aplicativo, um cliente da XP é capaz de realizar seu login para comprar e vender ações, consultar sua carteira de ativos, realizar depósitos e saques em sua conta e consultar seu saldo.
 
 ## Explicação da decisão na abordagem do desafio
-Decidi fazer o projeto em JavaScript, por ser  a linguagem que tenho mais familiaridade e também por ser adequada ao tipo de projeto. Para o token de autenticação foi utilizado o JWT (JSON Web Token). Para o banco de dados foi utilizado o MySQL. Foi construída uma base de dados com 3 clientes cadastrados, cada um com sua carteira de ativos e saldo em conta digital. Além disso, foi feita uma lista de ativos existentes, cada um com suas quantidades e preços disponíveis para compra e venda.
+* Decidi fazer o projeto em JavaScript, por ser  a linguagem que tenho mais familiaridade e também por ser adequada ao tipo de projeto. Para o token de autenticação foi utilizado o JWT (JSON Web Token). Para o banco de dados foi utilizado o MySQL. Foi construída uma base de dados com 3 clientes cadastrados, cada um com sua carteira de ativos e saldo em conta digital. Além disso, foi feita uma lista de ativos existentes, cada um com suas quantidades e preços disponíveis para compra e venda.
+
+Obs.:
+* O Swagger foi feito, mas necessita de revisão. Apesar de ter implementado o processo de autenticação, não está passando pela autenticação do token gerado, não chegando assim na rotas que necessitam dele. Encontra-se na rota (/docs).
+
+* O deploy foi feito, entretanto também necessita de revisão: https://deploy-desafio-xp-carolcabralm.herokuapp.com/
+Ex.: https://deploy-desafio-xp-carolcabralm.herokuapp.com/ativos/PETR4
 
 ## Instruções de como compilar e executar o projeto
 
