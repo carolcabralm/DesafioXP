@@ -1,6 +1,5 @@
 const loginModel = require('../models/loginModel');
 const { token } = require('../middlewares/token');
-// import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 const { StatusCodes } = require('http-status-codes');
 
 const login = async (codCliente, senha) => {

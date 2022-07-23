@@ -98,6 +98,26 @@ router.post('/conta/deposito', validationsConta, auth, autorizacaoCliente, valid
 
 router.post('/conta/saque', validationsConta, auth, autorizacaoCliente, validacaoValor, validacaoSaque, contaController.saque);
 
+/**
+ * @swagger
+ *  /conta/1:
+ *     get:
+ *       tags: [conta]
+ *       description: Endpoint que realiza consulta de saldo
+ *       security:
+ *         - bearerAuth: []
+ *       responses:
+ *         201:
+ *           description: Saída para consulta de saldo realizada com sucesso.
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 type: object
+ *                 example:
+ *                   codCliente: 1
+ *                   saldo: 58
+ */
+
 router.get('/conta/:codCliente', auth, autorizacaoClienteParams, contaController.saldo);
 
 module.exports = router;
