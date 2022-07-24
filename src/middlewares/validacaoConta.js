@@ -16,9 +16,9 @@ const validacaoSaque = async (req, res, next) => {
     return res.status(StatusCodes.NOT_ACCEPTABLE).json({ message: 'Saldo insuficiente.' });
   }
   next();
-}
+};
 
 module.exports = {
   validacaoValor,
   validacaoSaque,
-}
+};

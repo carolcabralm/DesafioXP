@@ -5,7 +5,7 @@ const { JWT_SECRET } = process.env;
 const jwtConfig = {
   expiresIn: '12h',
   algorithm: 'HS256',
-}
+};
 
 const token = (payload) => jwt.sign(payload, JWT_SECRET, jwtConfig);
 
@@ -21,7 +21,7 @@ const auth = (req, res, next) => {
     return res.status(401).json({ message: 'Sessão expirada. Realize login novamente para continuar.' });
   }
   next();
-}
+};
 
 module.exports = { 
   token,

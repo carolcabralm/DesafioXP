@@ -16,7 +16,7 @@ const validacaoInvestimentosComprar = async (req, res, next) => {
     return res.status(StatusCodes.NOT_ACCEPTABLE).json({ message: 'Quantidade de ativo disponível menor que a desejada.' });
   } 
   next();
-}
+};
 
 const validacaoInvestimentosVender = async (req, res, next) => {
   const { codCliente, codAtivo, qtdeAtivo } = req.body;
@@ -29,9 +29,9 @@ const validacaoInvestimentosVender = async (req, res, next) => {
     return res.status(StatusCodes.NOT_ACCEPTABLE).json({ message: 'Quantidade de ativo disponível em carteira menor que a desejada para venda.' });
   }
   next();
-}
+};
 
 module.exports = {
   validacaoInvestimentosComprar,
   validacaoInvestimentosVender,
-}
+};

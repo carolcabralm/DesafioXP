@@ -21,4 +21,4 @@ const autorizacaoClienteParams = async (req, res, next) => {
 module.exports = {
   autorizacaoCliente,
   autorizacaoClienteParams,
-}
+};

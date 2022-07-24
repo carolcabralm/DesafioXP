@@ -8,4 +8,4 @@ module.exports = {
   contaRouter,
   investimentosRouter,
   loginRouter,
-}
+};
