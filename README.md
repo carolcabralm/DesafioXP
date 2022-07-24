@@ -9,7 +9,8 @@ Tendo como base o dia a dia da XP, foi desenvolvida a parte de back-end para um 
 
 ### Link Postman
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/c97f9ca8e6ccf76f73e5?action=collection%2Fimport)
-https://www.postman.com/collections/c97f9ca8e6ccf76f73e5
+
+- https://www.postman.com/collections/c97f9ca8e6ccf76f73e5
 
 Obs.:
 * O Swagger foi feito, mas necessita de revisão. Apesar de ter implementado o processo de autenticação, não está passando pela autenticação do token gerado, não chegando assim na rotas que necessitam dele. Encontra-se na rota (/docs).
