@@ -8,7 +8,7 @@ Tendo como base o dia a dia da XP, foi desenvolvida a parte de back-end para um 
 * Decidi fazer o projeto em JavaScript, por ser  a linguagem que tenho mais familiaridade e também por ser adequada ao tipo de projeto. Para o token de autenticação foi utilizado o JWT (JSON Web Token). Para o banco de dados foi utilizado o MySQL. Foi construída uma base de dados com 3 clientes cadastrados, cada um com sua carteira de ativos e saldo em conta digital. Além disso, foi feita uma lista de ativos existentes, cada um com suas quantidades e preços disponíveis para compra e venda.
 
 ### Link Postman
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/21003871-e1c24178-e4aa-4915-b3c5-92dfcbcfb273?action=collection%2Ffork&collection-url=entityId%3D21003871-e1c24178-e4aa-4915-b3c5-92dfcbcfb273%26entityType%3Dcollection%26workspaceId%3Dba5f928d-5b59-4477-a1a9-8d5eb8c10586)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/5344007228a4975ca686?action=collection%2Fimport)
 
 - https://www.postman.com/collections/c97f9ca8e6ccf76f73e5
 
