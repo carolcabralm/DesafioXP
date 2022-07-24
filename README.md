@@ -7,6 +7,19 @@ Tendo como base o dia a dia da XP, foi desenvolvida a parte de back-end para um 
 ## Explicação da decisão na abordagem do desafio
 * Decidi fazer o projeto em JavaScript, por ser  a linguagem que tenho mais familiaridade e também por ser adequada ao tipo de projeto. Para o token de autenticação foi utilizado o JWT (JSON Web Token). Para o banco de dados foi utilizado o MySQL. Foi construída uma base de dados com 3 clientes cadastrados, cada um com sua carteira de ativos e saldo em conta digital. Além disso, foi feita uma lista de ativos existentes, cada um com suas quantidades e preços disponíveis para compra e venda.
 
+<div class="postman-run-button"
+data-postman-action="collection/import"
+data-postman-var-1="c97f9ca8e6ccf76f73e5"></div>
+<script type="text/javascript">
+  (function (p,o,s,t,m,a,n) {
+    !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
+    !o.getElementById(s+t) && o.getElementsByTagName("head")[0].appendChild((
+      (n = o.createElement("script")),
+      (n.id = s+t), (n.async = 1), (n.src = m), n
+    ));
+  }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));
+</script>
+
 Obs.:
 * O Swagger foi feito, mas necessita de revisão. Apesar de ter implementado o processo de autenticação, não está passando pela autenticação do token gerado, não chegando assim na rotas que necessitam dele. Encontra-se na rota (/docs).
 
